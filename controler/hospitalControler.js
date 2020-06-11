@@ -25,16 +25,16 @@ module.exports = controler = {
     },
     async adicionaHospital(data) {
         const novoHospital = new Hospital(data);
-        await novoHospital.save().then((response) => console.log(response));
-        return "Cadastrado com sucesso!"
+        return await novoHospital.save().then((response) => { return response });
+
     },
     async atualizaDadosHospital(data, id) {
         const dadoAtualizado = await Hospital.findOneAndReplace({ _id: mongoose.Types.ObjectId(id) }, data).then((response) => {
-            console.log(response)
+            return response
         }).catch(erro => {
             console.log(erro)
         })
-        return "Alterado com sucesso"
+        return dadoAtualizado
     },
     async deletaHospital(id) {
         const deletaCurso = await Hospital.findOneAndDelete({ _id: mongoose.Types.ObjectId(id) }).then((response) => {
@@ -42,6 +42,6 @@ module.exports = controler = {
         }).catch(erro => {
             console.log(erro)
         })
-        return "Remoção com sucesso"
+        return deletaCurso
     },
 }
