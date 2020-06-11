@@ -4,6 +4,9 @@ const paciente = require('./pacienteSchema')
 const hospital = new Schema({
     leitos: Number,
     tipo: String,
-    pacientes: [paciente]
+    pacientes: [{
+        nome: String,
+        sexo: String
+    }]
 });
 module.exports = hospital
