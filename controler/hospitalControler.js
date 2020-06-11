@@ -34,7 +34,12 @@ module.exports = controler = {
         }).catch(erro => {
             console.log(erro)
         })
-        return dadoAtualizado
+        let todosDadosAtualizados = await Hospital.find().then((response) => {
+            return response
+        }).catch(erro => {
+            console.log(erro)
+        })
+        return todosDadosAtualizados
     },
     async deletaHospital(id) {
         const deletaCurso = await Hospital.findOneAndDelete({ _id: mongoose.Types.ObjectId(id) }).then((response) => {
